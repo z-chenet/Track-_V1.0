@@ -1,37 +1,21 @@
 package com.freelance.zchen.track;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.app.Application;
 
-public class TracksApplication extends Activity {
+import com.parse.Parse;
+import com.parse.ParseObject;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tracks_application);
-    }
+public class TracksApplication extends Application {
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tracks_application, menu);
-        return true;
+    public void onCreate() {
+        super.onCreate();
+
+        ParseObject.registerSubclass(Purchases.class);
+
+        Parse.enableLocalDatastore(getApplicationContext());
+        Parse.initialize(this, "L239QoxOAQHJEhoYRa0qEZUHAEVqD3nTL12ivdne", "pugVQh54xL3OxlpXM7oB4yizShft4C7hwTiLlsBh");
+        
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
