@@ -12,18 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TracksListActivity extends Activity {
@@ -32,12 +35,15 @@ public class TracksListActivity extends Activity {
 
     private LayoutInflater inflater;
     private ListView purchasesListView;
+    private ArrayList<String> objectIdList = new ArrayList<String>();
+    private int totalOwedGlob;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("HERERERERERERERE");
+        totalOwedGlob = 0;
 
 //        ParseObject testObject = new ParseObject("TestObject");
 //        testObject.put("foo", "bar");
@@ -77,7 +83,36 @@ public class TracksListActivity extends Activity {
     public void onResume(){
         super.onResume();
 
+        totalOwedGlob = 0;
+//        try {
+//            ParseObject.unpinAll();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
         syncPurchasesToParse();
+
+        updateTotal();
+
+    }
+
+    private void updateTotal() {
+        ParseQuery<Purchases> query = Purchases.getQuery();
+        query.findInBackground(new FindCallback<Purchases>() {
+            @Override
+            public void done(List<Purchases> purchases, ParseException e) {
+                for (Purchases purchase : purchases) {
+                    System.out.println(purchase.getCostOfPurchase());
+                    totalOwedGlob += (int) purchase.getCostOfPurchase();
+                }
+                System.out.println(totalOwedGlob);
+                TextView totalOwedView = (TextView)findViewById(R.id.totalOwed);
+                totalOwedView.setText(String.valueOf(totalOwedGlob));
+            }
+        });
+
+
+
     }
 
     @Override
@@ -96,7 +131,14 @@ public class TracksListActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            syncPurchasesToParse();
+            try {
+                ParseObject.unpinAll();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            totalOwedGlob = 0;
+            loadFromParse();
+            updateTotal();
         }
 
         return super.onOptionsItemSelected(item);
@@ -112,29 +154,30 @@ public class TracksListActivity extends Activity {
         query.findInBackground(new FindCallback<Purchases>() {
             @Override
             public void done(List<Purchases> purchases, ParseException e) {
-                if (e == null){
+                if (e == null) {
                     ParseObject.pinAllInBackground((List<Purchases>) purchases,
                             new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
-                                    if (e == null){
-                                        if (!isFinishing()){
+                                    if (e == null) {
+                                        if (!isFinishing()) {
                                             purchasesAdapter.loadObjects();
                                         }
-                                    } else{
+                                    } else {
                                         Log.i("PurchaseListActivity",
                                                 "laodfromparsefailed to pin to background"
-                                        + e.getMessage());
+                                                        + e.getMessage());
                                     }
                                 }
                             });
-                } else{
+                } else {
                     Log.i("PurchaseListActivity",
                             "loadfromparse failed"
                                     + e.getMessage());
                 }
             }
         });
+
     }
 
     private void syncPurchasesToParse(){
@@ -145,27 +188,28 @@ public class TracksListActivity extends Activity {
             query.findInBackground(new FindCallback<Purchases>() {
                 @Override
                 public void done(List<Purchases> purchases, ParseException e) {
-                    if (e == null){
-                        for (final Purchases purchase : purchases){
+                    if (e == null) {
+                        for (final Purchases purchase : purchases) {
+                            objectIdList.add(purchase.getObjectId());
                             purchase.saveInBackground(new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
-                                    if (e == null){
-                                        if(isFinishing()){
+                                    if (e == null) {
+                                        if (!isFinishing()) {
                                             purchasesAdapter.notifyDataSetChanged();
                                         }
                                     }
                                 }
                             });
                         }
-                    }
-                    else{
+                    } else {
                         Log.i("PurchaseListActivity",
                                 "syncTodosToParse: Error finding pinned todos: "
                                         + e.getMessage());
                     }
                 }
             });
+
         }
         else{
             Toast.makeText(
@@ -183,11 +227,14 @@ public class TracksListActivity extends Activity {
         @Override
         public View getItemView(Purchases purchase, View view, ViewGroup parent){
             ViewHolder holder;
+//            int tempTotal = 0;
+
             if (view == null){
                 view = inflater.inflate(R.layout.list_item_purchase, parent, false);
                 holder = new ViewHolder();
                 holder.purchaseTitle = (TextView) view.findViewById(R.id.purhcaseName);
                 holder.purchaseCost = (TextView) view.findViewById(R.id.PurchaseCost);
+                holder.moneySymbol = (ImageView) view.findViewById(R.id.imageView);
                 view.setTag(holder);
             }
             else {
@@ -195,8 +242,12 @@ public class TracksListActivity extends Activity {
             }
             TextView purchaseTitle = holder.purchaseTitle;
             TextView purchaseCost = holder.purchaseCost;
+            ImageView moneySymbol = holder.moneySymbol;
+            TextView totalOwed = holder.totalOwed;
             purchaseTitle.setText(purchase.getNameOfPurchase());
             purchaseCost.setText(String.valueOf(purchase.getCostOfPurchase()));
+            moneySymbol.setImageResource(R.drawable.ic_action_name);
+//            totalOwed.setText(String.valueOf(totalOwedGlob));
             return view;
         }
     }
@@ -204,5 +255,7 @@ public class TracksListActivity extends Activity {
     private static class ViewHolder{
         TextView purchaseTitle;
         TextView purchaseCost;
+        ImageView moneySymbol;
+        TextView totalOwed;
     }
 }

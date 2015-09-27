@@ -17,16 +17,21 @@
         <TextView
             android:layout_width="129dp"
             android:layout_height="wrap_content"
-            android:text="Total Owed"
+            android:text="-"
+            android:textSize="36dp"
             android:id="@+id/totalOwed"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.10" />
+            android:layout_weight="0.10"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="center" />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/purchasesList"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.10" />
+            android:layout_weight="0.10"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp" />
     </LinearLayout>
 </RelativeLayout>
