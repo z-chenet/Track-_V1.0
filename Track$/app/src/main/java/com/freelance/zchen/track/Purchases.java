@@ -2,6 +2,7 @@ package com.freelance.zchen.track;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 /**
  * Created by zchen on 9/25/2015.
@@ -13,6 +14,10 @@ public class Purchases extends ParseObject {
     float costOfPurchase;
     Boolean prio;
 
+    public static ParseQuery<Purchases> getQuery() {
+        return ParseQuery.getQuery(Purchases.class);
+    }
+
     public String getNameOfPurchase() {
         return getString("NameOfPurchase");
     }
@@ -21,8 +26,8 @@ public class Purchases extends ParseObject {
         put("NameOfPurchase", nameOfPurchase);
     }
 
-    public float getCostOfPurchase() {
-        return (float) getNumber("CostOfPurchase");
+    public Number getCostOfPurchase() {
+        return getNumber("CostOfPurchase");
     }
 
     public void setCostOfPurchase(float costOfPurchase) {
