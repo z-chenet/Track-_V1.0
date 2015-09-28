@@ -38,16 +38,9 @@ public class TracksListActivity extends Activity {
     private ArrayList<String> objectIdList = new ArrayList<String>();
     private int totalOwedGlob;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("HERERERERERERERE");
         totalOwedGlob = 0;
-
-//        ParseObject testObject = new ParseObject("TestObject");
-//        testObject.put("foo", "bar");
-//        testObject.saveInBackground();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracks_list);
@@ -84,12 +77,12 @@ public class TracksListActivity extends Activity {
         super.onResume();
 
         totalOwedGlob = 0;
-//        try {
-//            ParseObject.unpinAll();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
+        try {
+            ParseObject.unpinAll();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        loadFromParse();
         syncPurchasesToParse();
 
         updateTotal();
@@ -130,7 +123,7 @@ public class TracksListActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_refresh) {
             try {
                 ParseObject.unpinAll();
             } catch (ParseException e) {

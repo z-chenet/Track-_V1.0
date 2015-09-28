@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="bb0ac3f3ee2d71854501cc28e52cc84a20209b41">
+        <dex dex="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\pre-dexed\debug\classes-db0c26fabad14ed3e4f7d7f77c63cbf3606306d2.jar" />
+    </item>
+    <item
+        jar="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="5d4bccb885c8a89d066ecb6c4addb553a99a79a2">
+        <dex dex="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-01673ee60c4aa29f2712581b0e580a9dca4ccce3.jar" />
+    </item>
+    <item
+        jar="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\pre-dexed\debug\classes-0d3423a0dea5d3ae648e877fc2b101f05d9f0d5e.jar" />
+    </item>
+    <item
+        jar="C:\androidSDK\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-bf404ada15ef1ecab812bb69d3f9902912b3be71.jar" />
+    </item>
+    <item
+        jar="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\pre-dexed\debug\classes-d4a0a6246a0c988e3fe22d05d2f8f3d2146620ad.jar" />
+    </item>
+    <item
+        jar="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\androidProjects\Track-_V1.0\FloatingActionButtonBasic\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-7e9e9afc3f2c0f4815af501403e1f4961539a6f3.jar" />
+    </item>
+
+</items>
