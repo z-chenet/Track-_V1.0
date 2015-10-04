@@ -11,7 +11,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="6dp"
-        android:paddingLeft="30dp"/>
+        android:paddingLeft="30dp"
+        android:textColor="@color/darkblue"/>
 
     <TextView
         android:layout_width="wrap_content"

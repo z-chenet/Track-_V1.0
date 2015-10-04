@@ -2,6 +2,7 @@ package com.freelance.zchen.track;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -99,7 +100,7 @@ public class TracksListActivity extends Activity {
                     totalOwedGlob += (int) purchase.getCostOfPurchase();
                 }
                 System.out.println(totalOwedGlob);
-                TextView totalOwedView = (TextView)findViewById(R.id.totalOwed);
+                TextView totalOwedView = (TextView) findViewById(R.id.totalOwed);
                 totalOwedView.setText(String.valueOf(totalOwedGlob));
             }
         });
@@ -135,6 +136,12 @@ public class TracksListActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addPurchase(View v){
+        Intent intent = new Intent(getApplicationContext(), NewPurchaseActivity.class);
+        startActivity(intent);
+
     }
 
     protected void openEditView(Purchases purchase){

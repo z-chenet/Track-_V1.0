@@ -22,7 +22,8 @@
         </activity>
         <activity
             android:name=".NewPurchaseActivity"
-            android:label="@string/title_activity_new_purchase" >
+            android:label="@string/title_activity_new_purchase"
+            android:parentActivityName=".TracksListActivity">
         </activity>
     </application>
 
