@@ -6,4 +6,59 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.freelance.zchen.track.NewPurchaseActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/saveButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:onClick="savePurchase" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancelButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="cancelPurchase" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameOfPurchaseInput"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="120dp"
+        android:layout_alignEnd="@+id/costOfPurchaseInput"
+        android:layout_toEndOf="@+id/saveButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Purchase Name"
+        android:id="@+id/purchaseNameLabel"
+        android:layout_alignBottom="@+id/nameOfPurchaseInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Cost of Purchase"
+        android:id="@+id/costPurchaseLabel"
+        android:layout_below="@+id/nameOfPurchaseInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/costOfPurchaseInput"
+        android:layout_below="@+id/costPurchaseLabel"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

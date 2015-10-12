@@ -25,6 +25,10 @@
             android:label="@string/title_activity_new_purchase"
             android:parentActivityName=".TracksListActivity">
         </activity>
+        <activity android:name=".DeletePurchase"
+            android:theme="@style/deletePopTheme">
+        </activity>
+
     </application>
 
 </manifest>

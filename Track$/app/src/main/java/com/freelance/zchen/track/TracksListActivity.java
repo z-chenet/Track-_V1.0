@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -147,6 +148,14 @@ public class TracksListActivity extends Activity {
     protected void openEditView(Purchases purchase){
         System.out.println("HERE:");
         System.out.println(purchase.getNameOfPurchase() + "  " + purchase.getCostOfPurchase());
+
+        Intent intent = new Intent(TracksListActivity.this, DeletePurchase.class);
+        //  need to make purchase parceable so that i can pass it through to the new activity
+        //http://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
+        //intent.putExtra("purchase", (Parcelable)purchase);
+        //intent.putExtra("purchase", purchase);
+        intent.putExtra("purchase", purchase.getObjectId());
+        startActivity(intent);
     }
 
     private void loadFromParse(){

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Are you sure you want to delete purchase?"
+        android:id="@+id/deletPurchaseTitle"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:id="@+id/deletePurhcase"
+        android:layout_alignTop="@+id/cancelDelete"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:nestedScrollingEnabled="false"
+        android:onClick="delPurchase" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancelDelete"
+        android:layout_below="@+id/deletPurchaseTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:onClick="cancelDel" />
+</RelativeLayout>
