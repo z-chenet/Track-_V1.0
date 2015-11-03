@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 /**
  * Created by zchen on 10/11/2015.
@@ -28,16 +30,19 @@ public class DeletePurchase extends Activity{
         getWindow().setLayout((int) (width * .8), (int) (height * .3));
     }
 
-    public void delPurchase(View v){
+    public void delPurchase(View v) throws ParseException {
 
         Intent intent = getIntent();
-        String objId = intent.getStringExtra("purchase");
-        //Purchases purch = (Purchases) intent.getSerializableExtra("purchase");
-        System.out.println("delete pushed");
+        String objId = intent.getStringExtra("purchaseId");
 
+        ParseQuery<Purchases> query = Purchases.getQuery();
+        Purchases curPurch = query.get(objId);
 
-        Purchases purchase = ParseObject.createWithoutData(Purchases.class, objId);
-        System.out.println(purchase.getNameOfPurchase());
+        System.out.println(curPurch.getNameOfPurchase()+ "!!!!!!!!!!!!!!!!!!!!!!!!");
+        curPurch.delete();
+        finish();
+//        Purchases purchase = ParseObject.createWithoutData(Purchases.class, objId);
+//        System.out.println(purchase.getNameOfPurchase());
        // System.out.println(purch.getNameOfPurchase());
         /*
         *

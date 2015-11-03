@@ -37,6 +37,8 @@ public class NewPurchaseActivity extends Activity {
         else{
             Toast.makeText(getApplicationContext(), "Missing Purchase Details", Toast.LENGTH_LONG).show();
         }
+
+        finish();
     }
 
     public void cancelPurchase(View v){

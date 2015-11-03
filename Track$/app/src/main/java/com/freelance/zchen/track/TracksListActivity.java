@@ -75,18 +75,31 @@ public class TracksListActivity extends Activity {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
+    public void onStart(){
+        super.onStart();
 
-        totalOwedGlob = 0;
+        System.out.println("ON START");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        System.out.println("PAUSE");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("testing seeing if here on resume after delete");
         try {
             ParseObject.unpinAll();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        loadFromParse();
-        syncPurchasesToParse();
 
+        totalOwedGlob = 0;
+        loadFromParse();
         updateTotal();
 
     }
@@ -154,7 +167,7 @@ public class TracksListActivity extends Activity {
         //http://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
         //intent.putExtra("purchase", (Parcelable)purchase);
         //intent.putExtra("purchase", purchase);
-        intent.putExtra("purchase", purchase.getObjectId());
+        intent.putExtra("purchaseId", purchase.getObjectId());
         startActivity(intent);
     }
 
